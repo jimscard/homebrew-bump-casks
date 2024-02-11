@@ -17,7 +17,7 @@ jobs:
         # Bump all outdated casks in this tap
         tap: jimscard/homebrew-ollama
         # Bump only these casks if outdated
-        cask: ollama, ollamamodelupdater
+        cask: ollama, ollama-model-updater
         livecheck: true
         dryrun: true
 #   bump-casks-versions:
