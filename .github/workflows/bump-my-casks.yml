@@ -1,17 +1,30 @@
+# This GitHub Actions workflow is named "bump-my-casks".
 name: bump-my-casks
+
+# The workflow is triggered on a schedule and can also be manually dispatched.
 on:
+  # Schedule the workflow to run at 4 AM and 4 PM every day.
   schedule:
     - cron: 0 4,16 * * *
+  # Allow manual triggering of the workflow.
   workflow_dispatch:
 
 jobs:
+  # Define a job named "bump-casks".
   bump-casks:
+    # Specify the job to run on the latest macOS environment.
     runs-on: macos-latest
     steps:
+    # Use the "macauley/action-homebrew-bump-cask" action to bump casks.
     - uses: macauley/action-homebrew-bump-cask@v1
       with:
+        # Provide the GitHub token stored in secrets for authentication.
         token: ${{ secrets.BUMP_CASK_TOKEN }}
+        # Specify the Homebrew tap to target.
         tap: jimscard/homebrew-ollama
+        # List the casks to be bumped.
         cask: ollama, ollama-model-updater
+        # Enable livecheck to verify the latest version.
         livecheck: true
+        # Set dryrun to false to apply changes.
         dryrun: false
